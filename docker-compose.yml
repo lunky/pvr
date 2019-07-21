@@ -1,0 +1,30 @@
+version: "2"
+services:
+  nzbget:
+    image: linuxserver/nzbget
+    container_name: nzbget
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Canada/Central
+    volumes:
+      - e:/media/downloads:/downloads
+    ports:
+      - 6789:6789
+    restart: unless-stopped
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Canada/Central
+      - UMASK_SET=022 #optional
+    volumes:
+      - e:/media/config:/config
+      - e:/media/data:/data
+      - e:/media/tv:/tv
+      - e:/media/downloads:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
