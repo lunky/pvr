@@ -8,7 +8,7 @@ services:
       - PGID=1000
       - TZ=Canada/Central
     volumes:
-      - e:/media/downloads:/downloads
+      - d:/media/downloads:/downloads
     ports:
       - 6789:6789
     restart: unless-stopped
@@ -21,10 +21,10 @@ services:
       - TZ=Canada/Central
       - UMASK_SET=022 #optional
     volumes:
-      - e:/media/config:/config
-      - e:/media/data:/data
-      - e:/media/tv:/tv
-      - e:/media/downloads:/downloads
+      - d:/media/config:/config
+      - d:/media/data:/data
+      - d:/media/tv:/tv
+      - d:/media/downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
