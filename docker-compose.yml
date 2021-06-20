@@ -1,4 +1,5 @@
-version: "2"
+---
+version: "2.1"
 services:
   nzbget:
     image: linuxserver/nzbget
@@ -9,6 +10,7 @@ services:
       - TZ=Canada/Central
     volumes:
       - d:/media/downloads:/downloads
+      - d:/media/nzbgetconfig:/config
     ports:
       - 6789:6789
     restart: unless-stopped
@@ -19,12 +21,47 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Canada/Central
-      - UMASK_SET=022 #optional
     volumes:
-      - d:/media/config:/config
+      - d:/media/sonarrconfig:/config
       - d:/media/data:/data
       - d:/media/tv:/tv
       - d:/media/downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
+
+  radarr:
+    container_name: radarr
+    image: hotio/radarr
+    restart: unless-stopped
+    ports:
+      - "7878:7878"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=Etc/UTC
+      - ARGS
+      - DEBUG=no
+    volumes:
+      - d:/media/radarr:/config  
+      - d:/media/downloads:/downloads      
+      - d:/media/movies:/downloads/completed/Movies      
+#  plex:
+#    image: linuxserver/plex
+#    container_name: plex
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+#      - VERSION=docker
+#      - UMASK_SET=022 #optional
+#    volumes:
+#      - d:/media/config:/config
+#      - d:/media/data:/data
+#      - d:/media/tv:/tv
+#      - d:/media/downloads:/downloads
+#      - d:/media/transcode:/transcode
+#    ports:
+#      - 32400:32400
+#    restart: unless-stopped
+    
