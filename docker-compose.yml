@@ -30,23 +30,23 @@ services:
       - 8989:8989
     restart: unless-stopped
 
-  radarr:
-    container_name: radarr
-    image: hotio/radarr
-    restart: unless-stopped
-    ports:
-      - "7878:7878"
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - UMASK=002
-      - TZ=Etc/UTC
-      - ARGS
-      - DEBUG=no
-    volumes:
-      - d:/media/radarr:/config  
-      - d:/media/downloads:/downloads      
-      - d:/media/movies:/downloads/completed/Movies      
+#  radarr:
+#    container_name: radarr
+#    image: hotio/radarr
+#    restart: unless-stopped
+#    ports:
+#      - "7878:7878"
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+#      - UMASK=002
+#      - TZ=Etc/UTC
+#      - ARGS
+#      - DEBUG=no
+#    volumes:
+#      - d:/media/radarr:/config  
+#      - d:/media/downloads:/downloads      
+#      - d:/media/movies:/downloads/completed/Movies      
 #  plex:
 #    image: linuxserver/plex
 #    container_name: plex
